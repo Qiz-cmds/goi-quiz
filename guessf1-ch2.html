@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css"> 
+<head>
+  <meta charset="UTF-8">   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="background">
+  <div class="container">
+  <audio autoplay loop>
+    <source src="audio/game.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> 
+    <div id="quiz-container">
+      <div id="question" class="question">
+
+
+      </div>
+      <div id="answers" class="answer-container">
+
+      </div>
+      <div id="feedback-answer">
+      
+
+      </div>
+       
+      <button id="next-button" class="next" >NEXT QUESTION</button>
+    </div>
+  </div>
+  </body>
+
+    <script>
+const quizData=[
+{
+  type: 'noquestion',
+        image: "imagef1-ch2/Picture10.png",
+        answers: ["いもうと", "ちち", "そふ"],
+        correctAnswer: 1 // Index of the correct answer in the answers array
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture11.png",
+        answers: ["そふ ", "おとうと", "そぼ"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture12.png",
+        answers: ["そぼ", "いもうと", "はは"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture13.png",
+        answers: ["おかあさん", "はは", "おとうと"],
+        correctAnswer: 2
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture14.png",
+        answers: ["おかあさん", "おとうさん", "そぼ "],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture15.png",
+        answers: ["あに", "はは", "そふ"],
+        correctAnswer: 1
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture16.png",
+        answers: ["おかあさん", "おじいさん", "あに"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture17.png",
+        answers: ["おばあさん", "あに", "おとうさん"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture18.png",
+        answers: ["おにいさん", "あに", "おばあさん"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture19.png",
+        answers: ["おじいさん", "いもとうさん", "あね"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture20.png",
+        answers: ["おとうとさん", "パイロット", "おばあさん"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture21.png",
+        answers: ["おにいさん", "かんごし", "パイロット"],
+        correctAnswer: 0
+      },
+       {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture22.png",
+        answers: ["かんごし", "あね", "ホッチキス"],
+        correctAnswer: 1
+      },
+       {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture23.png",
+        answers: ["きょうし", "パイロット", "いもとうさん"],
+        correctAnswer: 2
+      },
+       {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture24.png",
+        answers: ["きょうし", "おとうとさん", "かんごし"],
+        correctAnswer: 1
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture25.png",
+        answers: ["おとうとさん", "パイロット", "べんごし"],
+        correctAnswer: 1
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture26.png",
+        answers: ["かんごし ", "かいしゃいん", "べんごし"],
+        correctAnswer: 0
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture27.png",
+        answers: ["だいがくせい", "けいさつかん", "べんごし"],
+        correctAnswer: 2
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture28.png",
+        answers: ["きょうし", "かいしゃいん", "いしゃ"],
+        correctAnswer: 0
+      },
+       {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture29.png",
+        answers: ["かいしゃいん ", "エンジニア", "だいがくせい"],
+        correctAnswer: 0
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture30.png",
+        answers: ["だいがくせい", "けいさつかん", "こうむいん"],
+        correctAnswer: 1
+      },
+       {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture31.png",
+        answers: ["エンジニア", "こうこうせい", "だいがくせい"],
+        correctAnswer: 2
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture32.png",
+        answers: ["いしゃ", "けしごむ", "こうむいん"],
+        correctAnswer: 0
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture33.png",
+        answers: ["ふでばこ", "しゅふ", "エンジニア"],
+        correctAnswer: 2
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture34.png",
+        answers: ["こうこうせい", "こうむいん", "ふでばこ"],
+        correctAnswer: 1
+      }, 
+      {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture35.png",
+        answers: ["けいたいでんわ", "けしごむ", "こうこうせい"],
+        correctAnswer: 2
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture36.png",
+        answers: ["けいたいでんわ", "しゅふ", "ホッチキス"],
+        correctAnswer: 1
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture37.png",
+        answers: ["ふでばこ", "けしごむ", "ホッチキス"],
+        correctAnswer: 0
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture38.png",
+        answers: ["ホッチキス", "けしごむ", "けいたいでんわ"],
+        correctAnswer: 2
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture39.png",
+        answers: ["けしごむ", "そぼ", "おとうと"],
+        correctAnswer: 0
+      }, {
+        type: 'noquestion',
+        image: "imagef1-ch2/Picture40.png",
+        answers: ["ふでばこ", "ホッチキス", "おじいさん"],
+        correctAnswer: 1
+      },
+      {
+        type: 'gotquestion',
+        question: "	わたしの　ものは　ぺんと。。。。。。と　さいふです",
+        image: "imagef1-ch2/Picture41.png",
+        answers: ["おとうと", "なふだ", "そぼ"],
+        correctAnswer: 1
+      },
+      {
+        type: 'gotquestion',
+        question: "	ちちは　４５さいで。。。。。。です",
+        image: "imagef1-ch2/Picture42.png",
+        answers: ["こうむいん", "ふでばこ", "えんぴつ"],
+        correctAnswer: 0
+      },
+      {
+        type: 'gotquestion',
+        question: "アミンさんの。。。。。。。。は　２１さいで　だいがくせいです",
+        image: "imagef1-ch2/Picture43.png",
+        answers: ["おかあさん", "おねえさん", "おじいさん"],
+        correctAnswer: 1
+      },
+      {
+        type: 'gotquestion',
+        question: "ちちは　４５さいで　。。。。。。も　４５さいです",
+        image: "imagef1-ch2/Picture44.png",
+        answers: ["あに", "はは", "そふ"],
+        correctAnswer: 1
+      },
+      {
+        type: 'gotquestion',
+        question: "あの　ひとは。。。。。。です",
+        image: "imagef1-ch2/Picture45.png",
+        answers: ["じょうぎ", "べんごし", "けしゴム"],
+        correctAnswer: 1
+      },
+];
+
+let currentQuestion = 0;
+    const questionElement = document.getElementById('question');
+    const answersElement = document.getElementById('answers');
+    const nextButton = document.getElementById('next-button');
+    const feedbackElement = document.getElementById('feedback-answer');
+
+    function loadQuestion() {
+      const qData = quizData[currentQuestion];
+
+      answersElement.innerHTML = '';
+  if (qData.type === 'gotquestion') {
+    questionElement.innerHTML = `
+   
+         <h2 class="questiontext">${qData.question}</h2>
+      `; // Add a borders for img n questions for styling
+    // Text-based question with answer buttons
+    qData.answers.forEach((answer, index) => {
+      const answerButton = document.createElement('button');
+      answerButton.classList.add('answer-button');
+      answerButton.innerText = answer;
+      answerButton.addEventListener('click', () => {
+        checkAnswer(index);
+        container.appendChild(newDiv);
+      });
+      answersElement.appendChild(answerButton);
+      
+    });
+  
+  } else if (qData.type === 'noquestion') {
+    questionElement.innerHTML = `
+        <img src="${qData.image}"   style="border-radius : 20px" alt="Question Image"> 
+      `; // Add a borders for img n questions for styling
+      answersElement.innerHTML = '';
+      qData.answers.forEach((answer, index) => {
+        const answerButton = document.createElement('button');
+        answerButton.classList.add('answer-button'); // Add a class for styling
+        answerButton.innerText = answer;
+        answerButton.addEventListener('click', () => {
+          checkAnswer(index);
+        });
+        answersElement.appendChild(answerButton);
+      });
+    
+   
+  }
+    
+    feedbackElement.innerHTML = '';
+    }
+
+    function checkAnswer(answerIndex) {
+      const correctIndex = quizData[currentQuestion].correctAnswer;
+      const isCorrect = (answerIndex === correctIndex);
+
+      if (isCorrect) {
+        feedbackElement.innerHTML = `<span class="feedback-correct">&#9989; </span>`;
+      } else {
+        feedbackElement.innerHTML = `<span class="feedback-wrong">&#10060;</span>`;
+      }
+    
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        // Update next button text for last question
+        if (currentQuestion === quizData.length - 1) {
+          nextButton.innerText = 'NEXT QUESTION';
+        }
+        // Disable answers after selecting an answer
+        answersElement.querySelectorAll('button').forEach(button => {
+          button.disabled = true;
+        });
+      } else {
+        nextButton.innerText = 'NEXT QUESTION';
+      }
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        window.location.href = 'afterquiz.html';
+      }
+    });
+    loadQuestion();
+    </script>
+
+<style>
+.background{
+  background-image: url('wallpaper/animation.gif');
+  background-size: cover; 
+  
+}
+.question{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -50%);
+    font-size:30px; 
+    color: rgb(1, 1, 1);
+    -webkit-text-stroke: 1px rgb(255, 255, 255); /* for WebKit based browsers like Chrome and Safari */
+    width: 1000px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+       
+}
+.answer-container{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, 70%);
+    padding:  1px;
+    margin-bottom: 5px;
+   
+}
+#question img{
+  position: relative; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 350px; /* Set height to full height of the viewport */
+    position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -100%);
+  
+}
+.answer-button {
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 550px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+    padding:  15px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size : 30px;
+    background-color: rgb(255, 255, 255);
+    
+ 
+}
+.next{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 250px; /* Set width to full width of the viewport */
+    height: 50px; /* Set height to full height of the viewport */
+    top: 60%; /* Position button at vertical center */
+    left: 90%; /* Position button at horizontal center */
+    transform: translate(-50%, 1275%);
+     background-color: rgba(255, 255, 255, 0.945);
+}
+.quiz-container{
+  text-align: center;
+  width: 1000px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+}
+.feedback-correct {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+
+.feedback-wrong {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+.questiontext{
+  width: 1000px; /* Set width to full width of the viewport */
+  height: 90px; 
+  font-size:60px;
+  position: absolute; /* Set button to absolute position */
+    top: 20%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -180%);
+    
+}
+.answer-button1{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: column; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 100px; /* Set height to full height of the viewport */
+    padding:  30px;
+    margin-bottom: 30px;
+    transform: translate(-80%, -250%);
+}
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 30px;
+  }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+  .container {
+    max-width: 480px;
+    padding: 10px;
+  }
+}
+</style>
+</html>
