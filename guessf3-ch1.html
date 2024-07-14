@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">   
+</head>
+<body class="background">
+  <div class="container">
+  <audio autoplay loop>
+    <source src="audio/game.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> 
+</div>
+    <div id="quiz-container">
+      <div id="question" class="question">
+
+
+      </div>
+      <div id="answers" class="answer-container">
+
+      </div>
+      <div id="feedback-answer">
+      
+
+      </div>
+       
+      <button id="next-button" class="next" >NEXT QUESTION</button>
+    </div>
+  </div>
+  </body>
+
+    <script>
+const quizData=[
+{
+  type: 'noquestion',
+        image: "imagef3-ch1/Picture1.png",
+        answers: ["ドリアン", "あぶない", "かぜ"],
+        correctAnswer: 2 // Index of the correct answer in the answers array
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture2.png",
+        answers: ["ねつ", "いたい", "ドリアン"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture3.png",
+        answers: ["いりぐち", "ねつ", "ふうとう"],
+        correctAnswer: 1
+      },
+      
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture8.png",
+        answers: ["ドリアン", "でぐち", "ふうとう"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture9.png",
+        answers: ["おふろ", "あし", "あぶない"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture10.png",
+        answers: ["おふろ", "はな", "め"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture11.png",
+        answers: ["くち", "ふうとう", "て"],
+        correctAnswer: 1
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture12.jpg",
+        answers: ["はな", "て", "でぐち "],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture13.jpg",
+        answers: ["いりぐち", "こえ", "あし"],
+        correctAnswer: 2
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture14.jpg",
+        answers: ["くち", "こえ ", "おふろ"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture15.jpg",
+        answers: ["じょうぶ", "はな", "あし"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture16.jpg",
+        answers: ["みみ", "じょうぶ", "め"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture17.jpg",
+        answers: ["くち", "みみ", "め"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture18.jpg",
+        answers: ["かお", "いりぐち", "でぐち"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture19.jpg",
+        answers: ["はな", "おなか", "こえ"],
+        correctAnswer: 1
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef3-ch1/Picture20.jpg",
+        answers: ["て", "ふうとう", "みみ "],
+        correctAnswer: 2
+      },
+
+      
+     
+];
+
+let currentQuestion = 0;
+    const questionElement = document.getElementById('question');
+    const answersElement = document.getElementById('answers');
+    const nextButton = document.getElementById('next-button');
+    const feedbackElement = document.getElementById('feedback-answer');
+    function loadQuestion() {
+      const qData = quizData[currentQuestion];
+
+      answersElement.innerHTML = '';
+  if (qData.type === 'gotquestion') {
+    questionElement.innerHTML = `
+   
+         <h2 class="questiontext">${qData.question}</h2>
+      `; // Add a borders for img n questions for styling
+    // Text-based question with answer buttons
+    qData.answers.forEach((answer, index) => {
+      const answerButton = document.createElement('button');
+      answerButton.classList.add('answer-button');
+      answerButton.innerText = answer;
+      answerButton.addEventListener('click', () => {
+        checkAnswer(index);
+        container.appendChild(newDiv);
+      });
+      answersElement.appendChild(answerButton);
+      
+    });
+  
+  } else if (qData.type === 'noquestion') {
+    questionElement.innerHTML = `
+        <img src="${qData.image}"   style="border-radius : 20px" alt="Question Image"> 
+      `; // Add a borders for img n questions for styling
+      answersElement.innerHTML = '';
+      qData.answers.forEach((answer, index) => {
+        const answerButton = document.createElement('button');
+        answerButton.classList.add('answer-button'); // Add a class for styling
+        answerButton.innerText = answer;
+        answerButton.addEventListener('click', () => {
+          checkAnswer(index);
+        });
+        answersElement.appendChild(answerButton);
+      });
+    
+   
+  }
+    
+    feedbackElement.innerHTML = '';
+    }
+
+    function checkAnswer(answerIndex) {
+      const correctIndex = quizData[currentQuestion].correctAnswer;
+      const isCorrect = (answerIndex === correctIndex);
+
+      if (isCorrect) {
+        feedbackElement.innerHTML = `<span class="feedback-correct">&#9989; </span>`;
+      } else {
+        feedbackElement.innerHTML = `<span class="feedback-wrong">&#10060;</span>`;
+      }
+    
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        // Update next button text for last question
+        if (currentQuestion === quizData.length - 1) {
+          nextButton.innerText = 'NEXT QUESTION';
+        }
+        // Disable answers after selecting an answer
+        answersElement.querySelectorAll('button').forEach(button => {
+          button.disabled = true;
+        });
+      } else {
+        nextButton.innerText = 'NEXT QUESTION';
+      }
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        window.location.href = 'afterquiz3.html';
+      }
+    });
+      
+    loadQuestion();
+    </script>
+
+<style>
+.background{
+  background-image: url('wallpaper/animation.gif');
+  background-size: cover; 
+  
+}
+.question{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -50%);
+    font-size:30px; 
+    color: rgb(1, 1, 1);
+    -webkit-text-stroke: 1px rgb(255, 255, 255); /* for WebKit based browsers like Chrome and Safari */
+    width: 1000px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+       
+}
+.answer-container{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, 70%);
+    padding:  1px;
+    margin-bottom: 5px;
+   
+}
+#question img{
+  position: relative; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 350px; /* Set height to full height of the viewport */
+    position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -100%);
+  
+}
+.answer-button {
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 550px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+    padding:  15px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size : 30px;
+    background-color: rgb(255, 255, 255);
+    
+ 
+}
+.next{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 250px; /* Set width to full width of the viewport */
+    height: 50px; /* Set height to full height of the viewport */
+    top: 60%; /* Position button at vertical center */
+    left: 90%; /* Position button at horizontal center */
+    transform: translate(-50%, 1275%);
+     background-color: rgba(255, 255, 255, 0.945);
+}
+.quiz-container{
+  text-align: center;
+  width: 1000px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+}
+.feedback-correct {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+
+.feedback-wrong {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+.questiontext{
+  width: 1000px; /* Set width to full width of the viewport */
+  height: 90px; 
+  font-size:60px;
+  position: absolute; /* Set button to absolute position */
+    top: 20%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -180%);
+    
+}
+.answer-button1{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: column; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 100px; /* Set height to full height of the viewport */
+    padding:  30px;
+    margin-bottom: 30px;
+    transform: translate(-80%, -250%);
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 30px;
+  }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+  .container {
+    max-width: 480px;
+    padding: 10px;
+  }
+}
+</style>
+</html>
