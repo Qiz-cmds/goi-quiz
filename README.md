@@ -1,2 +1,2 @@
-# japanese.io.github
+# goiquiz.io.github
 Japanese website for stem
