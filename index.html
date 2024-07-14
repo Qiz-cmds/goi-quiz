@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>front page</title>
+<link rel="stylesheet" href="style.css">
+</head>  
+<body class="body"> 
+  <div class="container">
+    <audio id="bgaudio" autoplay loop>
+        <source src="audio/game.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio> 
+      <div class="text">
+        <h1>GOI-QUIZ</h1>
+    </div>   
+    <div class="container1">
+<image class="image" width="450px" height="450px" src ="image/bee.png" alt="logo(u need to get it transparent tho)">
+<a href = "secpage.html">
+<div class="container">
+<button class="button1"><b><i>START</i></b></button>
+</a>
+</div>
+</div>
+<style>
+     body{ 
+        background-image: url('image/jepun.jpg');
+        background-size: cover;
+}
+.button1{
+    background-color:rgb(255, 255, 255);
+    color:rgb(234, 59, 59);
+    font-size:90px;
+    border-radius : 20px;
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    width:500px;
+    height:100px;
+    transform: translate(-50%, 90%); /* Center button exactly */
+    
+}
+
+.image{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -73%);
+  display: inline-block;
+
+  }
+  .text{
+    position: absolute;
+  top: 50%;
+  left: 56%;
+  transform: translate(-50%, -45%);
+  font-size:70px;
+  color:rgb(255, 255, 255);
+  -webkit-text-stroke: 4px black; /* for WebKit based browsers like Chrome and Safari */
+  display: inline-block;
+  width:900px;
+  }
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 480px) {
+  .container {
+    max-width:649px;
+    padding-bottom:400px ;
+    padding-left: 400px;
+padding-right:400px;
+padding-top: 400px;
+position: relative;
+unicode-bidi: isolate;
+width: 304px;
+display: block;
+height : 669.6px;
+  }
+}
+</style>
+
+<footer>
+    <hr>
+    CREDIT : Amehazaki
+</footer>
+</audio> 
+</body>
+</html>
