@@ -1,0 +1,195 @@
+.container {
+    position: relative; /* Set container to relative position */
+    width: 100%; /* Set width to full width of the viewport */
+    height: 100vh; /* Set height to full height of the viewport */
+    
+  }
+  .button1 {
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    
+    transform: translate(-50%, 70%); /* Center button exactly */
+  }
+  .container1{
+    position: relative;
+  }
+  .image{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  }
+  .container2 {
+    position: relative; /* Set container to relative position */
+    width: 100%; /* Set width to full width of the viewport */
+    height: 100vh; /* Set height to full height of the viewport */
+  }
+  .button2 {
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, -150%); /* Center button exactly */
+  }
+  .button3 {
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, -30%); /* Center button exactly */
+  } 
+  .button4 {
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 90%); /* Center button exactly */
+  }
+  .container0{
+    position: relative;
+  }
+  .images1{
+     /* FOOTBALL */
+    position: absolute; /* Set button to absolute position */
+    top: 90%; /* Position button at vertical center */
+    left: 90%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 10%); /* Center button exactly */
+  }
+  .images2{
+     /* NOTHING TO DO GIRL */
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 90%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 140%); /* Center button exactly */
+  }
+  .images3{
+     /* AMIN */
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 10%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 10%); /* Center button exactly */
+  }.images4{
+     /* FAMILY */
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 10%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 150%); /* Center button exactly */
+  }
+  .images5{
+     /* WORKER */
+    position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+   
+    transform: translate(-50%, 50%); /* Center button exactly */
+
+    .container3{
+      position: relative;
+    }
+  }.images6{
+    /* FAMILY */
+   position: absolute; /* Set button to absolute position */
+   top: 50%; /* Position button at vertical center */
+   left: 10%; /* Position button at horizontal center */
+  
+   transform: translate(-50%, 170%); /* Center button exactly */
+ }
+.images7{
+  /* FAMILY */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.images8{
+  /* FAMILY */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.images9{
+  /* FAMILY */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.images10{
+  /* FAMILY */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.container4{
+  position: relative;
+}
+.images11{
+  /* HEAD HURTS */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 190%); /* Center button exactly */
+}
+.images12{
+  /* PRESENT */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 180%); /* Center button exactly */
+}
+.images13{
+  /* JOG */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.images14{
+  /* TRADITIONAL SPORTS */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+.images15{
+  /* MULTITASK */
+ position: absolute; /* Set button to absolute position */
+ top: 50%; /* Position button at vertical center */
+ left: 10%; /* Position button at horizontal center */
+
+ transform: translate(-50%, 170%); /* Center button exactly */
+}
+  
+  .container5{
+    position: relative;
+  }
+  .guess{
+    position: absolute; /* Set button to absolute position */
+    top:50%; /* Position button at vertical center */
+    left:50%; /* Position button at horizontal center */
+
+    transform: translate(-50%, 100%); /* Center button exactly */
+  }
+  .match {
+    position: absolute; /* Set button to absolute position */
+    top:50%; /* Position button at vertical center */
+    left:50%; /* Position button at horizontal center */
+
+    transform: translate(-50%, 250%); /* Center button exactly */
+  }
+  

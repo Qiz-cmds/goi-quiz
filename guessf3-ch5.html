@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css"> 
+<head>
+  <meta charset="UTF-8">   
+</head>
+<body class="background">
+  <audio autoplay loop>
+    <source src="audio/game.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio> 
+</div>
+    <div id="quiz-container">
+      <div id="question" class="question">
+
+
+      </div>
+      <div id="answers" class="answer-container">
+
+      </div>
+      <div id="feedback-answer">
+      
+
+      </div>
+       
+      <button id="next-button" class="next" >NEXT QUESTION</button>
+    </div>
+    
+  
+
+    <script>
+const quizData=[
+{
+  type: 'noquestion',
+        image: "imagef3-ch5/Picture68.jpg",
+        answers: ["がいこくじん", "がいこく", "がいこくご"],
+        correctAnswer: 1 
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture69.jpg",
+        answers: ["がいこくご", "マラソンをします", "できます"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture70.jpg",
+        answers: ["つながります", "うんてんをします", "がいこくじん"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture71.jpg",
+        answers: ["マラソンをします   ", "うります", "しゅみ"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture72.jpg",
+        answers: ["うんてんをします", "ことば", "できます"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture73.jpg",
+        answers: ["うんてんをします", "うります", "がいこくじん"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture74.jpg",
+        answers: ["メール", "つながります", "ことば"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture75.jpg",
+        answers: ["できます", "メール", "うります"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture76.jpg",
+        answers: ["しゅみ", "ソーシャルメディア", "ことば"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture77.jpg",
+        answers: ["りゅうがくをします", "ことば ", "フェイスブック"],
+        correctAnswer: 1
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture78.jpg",
+        answers: ["メール", "はります", "フェイスブック"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture79.jpg",
+        answers: ["かします", "とびます", "インスタグラム"],
+        correctAnswer: 2
+      },
+
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture80.jpg",
+        answers: ["フェイスブック ", "ソーシャルメディア", "はります"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture81.jpg",
+        answers: ["うります", "りゅうがくをします", "ソーシャルメディア"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture82.jpg",
+        answers: ["はります", "かします", "うんてんをします"],
+        correctAnswer: 1
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture83.jpg",
+        answers: ["はります", "ことば", "がいこくじん"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture84.jpg",
+        answers: ["フェイスブック", "うります", "よびます"],
+        correctAnswer: 2
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture85.jpg",
+        answers: ["とびます", "フェイスブック", "はります"],
+        correctAnswer: 0
+      },
+      {
+        type: 'noquestion',
+        image: "imagef3-ch5/Picture86.jpg",
+        answers: ["フェイスブック", "しゅみ", "ソーシャルメディア"],
+        correctAnswer: 2
+      },
+      
+];
+
+let currentQuestion = 0;
+    const questionElement = document.getElementById('question');
+    const answersElement = document.getElementById('answers');
+    const nextButton = document.getElementById('next-button');
+    const feedbackElement = document.getElementById('feedback-answer');
+    function loadQuestion() {
+      const qData = quizData[currentQuestion];
+
+      answersElement.innerHTML = '';
+  if (qData.type === 'gotquestion') {
+    questionElement.innerHTML = `
+    
+         <h2 class="questiontext">${qData.question}</h2>
+      `;
+    qData.answers.forEach((answer, index) => {
+      const container = document.getElementById('container');
+      const answerButton = document.createElement('button');
+      answerButton.classList.add('answer-button');
+      answerButton.innerText = answer;
+      answerButton.addEventListener('click', () => {
+        checkAnswer(index);
+        container.appendChild(newDiv);
+      });
+      answersElement.appendChild(answerButton);
+      
+    });
+  
+  } else if (qData.type === 'noquestion') {
+    questionElement.innerHTML = `
+        <img src="${qData.image}"   style="border-radius : 20px" alt="Question Image"> 
+      `;
+      answersElement.innerHTML = '';
+      qData.answers.forEach((answer, index) => {
+        const answerButton = document.createElement('button');
+        answerButton.classList.add('answer-button'); 
+        answerButton.innerText = answer;
+        answerButton.addEventListener('click', () => {
+          checkAnswer(index);
+        });
+        answersElement.appendChild(answerButton);
+      });
+    
+   
+  }
+    
+    feedbackElement.innerHTML = '';
+    }
+
+    function checkAnswer(answerIndex) {
+      const correctIndex = quizData[currentQuestion].correctAnswer;
+      const isCorrect = (answerIndex === correctIndex);
+
+      if (isCorrect) {
+        feedbackElement.innerHTML = `<span class="feedback-correct">&#9989; </span>`;
+      } else {
+        feedbackElement.innerHTML = `<span class="feedback-wrong">&#10060;</span>`;
+      }
+    
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        
+        if (currentQuestion === quizData.length - 1) {
+          nextButton.innerText = 'NEXT QUESTION';
+        }
+       
+        answersElement.querySelectorAll('button').forEach(button => {
+          button.disabled = true;
+        });
+      } else {
+        nextButton.innerText = 'NEXT QUESTION';
+      }
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        window.location.href = 'afterquiz3.html';
+      }
+    });
+    loadQuestion();
+    </script>
+</body>
+<style>
+.background{
+  background-image: url('wallpaper/animation.gif');
+  background-size: cover; 
+  
+}
+.question{
+  text-align: center; 
+  position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size:30px; 
+    color: rgb(1, 1, 1);
+    -webkit-text-stroke: 1px rgb(255, 255, 255); 
+    width: 1000px; 
+    height: 90px; /* Set height to full height of the viewport */
+       
+}
+.answer-container{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, 70%);
+    padding:  1px;
+    margin-bottom: 5px;
+   
+}
+#question img{
+  position: relative; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 350px; /* Set height to full height of the viewport */
+    position: absolute; /* Set button to absolute position */
+    top: 30%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -100%);
+  
+}
+.answer-button {
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 550px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+    padding:  15px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-size : 30px;
+    background-color: rgb(255, 255, 255);
+    
+ 
+}
+.next{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: relative; /* Set container to relative position */
+    width: 250px; /* Set width to full width of the viewport */
+    height: 50px; /* Set height to full height of the viewport */
+    top: 60%; /* Position button at vertical center */
+    left: 90%; /* Position button at horizontal center */
+    transform: translate(-50%, 1275%);
+     background-color: rgba(255, 255, 255, 0.945);
+}
+.quiz-container{
+  text-align: center;
+  width: 1000px; /* Set width to full width of the viewport */
+    height: 90px; /* Set height to full height of the viewport */
+}
+.feedback-correct {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+
+.feedback-wrong {
+  font-size:200px;
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -130%);
+}
+.questiontext{
+  width: 1000px; /* Set width to full width of the viewport */
+  height: 90px; 
+  font-size:60px;
+  position: absolute; /* Set button to absolute position */
+    top: 20%; /* Position button at vertical center */
+    left: 50%; /* Position button at horizontal center */
+    transform: translate(-50%, -180%);
+    
+}
+.answer-button1{
+  border: 3px solid #000000;
+    border-radius: 8px;
+    position: column; /* Set container to relative position */
+    width: 350px; /* Set width to full width of the viewport */
+    height: 100px; /* Set height to full height of the viewport */
+    padding:  30px;
+    margin-bottom: 30px;
+    transform: translate(-80%, -250%);
+}
+.container{
+  text-align: center; /* Center align the buttons vertically */
+  position: absolute; /* Set button to absolute position */
+    top: 50%; /* Position button at vertical center */
+    left: 80%; /* Position button at horizontal center */
+    transform: translate(-50%, 70%);
+    padding:  1px;
+    margin-bottom: 5px;
+}
+</style>
+</html>
